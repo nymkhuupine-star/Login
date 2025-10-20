@@ -7,6 +7,18 @@ import { Page4 } from "./Step4";
 
 export default function App() {
   const [step, setStep] = useState(1);
+  const getCurrentStep = () => {
+    const step = localStorage.getItem("currentStep");
+    console.log(step, "currentStep");
+  };
+  // const currentStep = step + 1;
+  // setStep(currentStep);
+  // localStorage.setItem("currentStep", currentStep);
+
+  // const currentStep= step+1;
+  // setStep(currentStep);
+  // localStorage.setItem("currentStep")
+
   function increaseStep() {
     setStep(step + 1);
   }

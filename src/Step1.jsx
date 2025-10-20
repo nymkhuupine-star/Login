@@ -1,6 +1,10 @@
 import { useState } from "react";
 import "./App.css";
 import Input from "./input";
+import PineconeLogo from "./icons/PineconeLogo";
+import IconLeft from "./icons/IconLeft";
+
+import IconRight from "./icons/IconRight";
 export function Page1({ increaseStep }) {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -49,6 +53,18 @@ export function Page1({ increaseStep }) {
     } else {
       increaseStep();
     }
+
+    // localStorage.setItem(
+    //   "data",
+    //   JSON.stringify({
+    //     firstName: firstName,
+    //     lastname: lastName,
+    //     userName: userName,
+    //   })
+    // );
+    // localStorage.setItem("currentStep", step + 1);
+
+    increaseStep();
   };
 
   return (
@@ -56,7 +72,7 @@ export function Page1({ increaseStep }) {
       <div className="section">
         <div className="box">
           <div className="navi">
-            <div className="photo"></div>
+            <PineconeLogo />
             <p className="Join">Join Us! 😎</p>
             <p className="please">
               Please provide all current information accurately.
@@ -70,12 +86,15 @@ export function Page1({ increaseStep }) {
                 type="text"
                 value={firstName}
                 name="firstName"
-                placeholder="placeholder"
+                className={firstNameError ? "input-error" : "first"}
+                placeholder=" placeholder"
                 onChange={handleStepOneContinueButton}
               />
+
               {firstNameError && (
                 <div className="error-message">{firstNameError}</div>
               )}
+
               <div className="od">
                 {" "}
                 <h5>Last name</h5> <span className="tseg">*</span>{" "}
@@ -84,13 +103,13 @@ export function Page1({ increaseStep }) {
                 type="text"
                 value={lastName}
                 name="lastName"
-                placeholder="placeholder"
+                className={lastNameError ? "input-error" : "first"}
+                placeholder=" placeholder"
                 onChange={handleStepOneContinueButton}
               />
               {lastNameError && (
                 <div className="error-message">{lastNameError}</div>
               )}
-
               <div className="od">
                 {" "}
                 <h5>User name</h5> <span className="tseg">*</span>{" "}
@@ -99,7 +118,8 @@ export function Page1({ increaseStep }) {
                 type="text"
                 value={userName}
                 name="userName"
-                placeholder="placeholder"
+                className={userNameError ? "input-error" : "first"}
+                placeholder=" placeholder"
                 onChange={handleStepOneContinueButton}
               />
               {userNameError && (
@@ -108,7 +128,8 @@ export function Page1({ increaseStep }) {
             </div>
           </div>
           <button onClick={handleSubmitButton} className="button">
-            <p className="con">Continue 1/3</p>
+            <p className="con">Continue 1/3 </p>
+            <IconRight />
           </button>
         </div>
       </div>

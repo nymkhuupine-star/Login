@@ -1,6 +1,9 @@
 import { useState } from "react";
 import "./App.css";
 import Input from "./input";
+import IconLeft from "./icons/IconLeft";
+import IconRight from "./icons/IconRight";
+import PineconeLogo from "./icons/PineconeLogo";
 export function Page2({ increaseStep, reduceStep }) {
   const [email, setEmail] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
@@ -45,7 +48,7 @@ export function Page2({ increaseStep, reduceStep }) {
     if (!allRegex.test(password) || password.length !== 12) {
       errors.password = "Password must include letters and numbers.";
     }
-    if (confirmPassword !== password) {
+    if (confirmPassword !== password || confirmPassword.length !== 12) {
       errors.confirmPassword = "Passwords do not match. Please try again.";
     }
 
@@ -69,7 +72,7 @@ export function Page2({ increaseStep, reduceStep }) {
       <div className="section">
         <div className="box">
           <div className="navi">
-            <div className="photo"></div>
+            <PineconeLogo />
             <p className="Join">Join Us! 😎</p>
             <p className="please">
               Please provide all current information accurately.
@@ -83,6 +86,7 @@ export function Page2({ increaseStep, reduceStep }) {
                 type="text"
                 value={email}
                 name="email"
+                className={emailError ? "input-error" : "first"}
                 onChange={handleStepTwoContinueButton}
               />
 
@@ -95,6 +99,7 @@ export function Page2({ increaseStep, reduceStep }) {
                 type="text"
                 value={phoneNumber}
                 name="phoneNumber"
+                className={phoneNumberError ? "input-error" : "first"}
                 onChange={handleStepTwoContinueButton}
               />
 
@@ -110,7 +115,8 @@ export function Page2({ increaseStep, reduceStep }) {
                 type="password"
                 value={password}
                 name="password"
-                placeholder="at least 12 characters"
+                className={passwordError ? "input-error" : "first"}
+                placeholder=" at least 12 characters"
                 onChange={handleStepTwoContinueButton}
               />
 
@@ -125,7 +131,8 @@ export function Page2({ increaseStep, reduceStep }) {
                 type="password"
                 value={confirmPassword}
                 name="confirmPassword"
-                placeholder="at least 12 characters"
+                className={confirmPasswordError ? "input-error" : "first"}
+                placeholder=" at least 12 characters"
                 onChange={handleStepTwoContinueButton}
               />
               {confirmPasswordError && (
@@ -135,10 +142,12 @@ export function Page2({ increaseStep, reduceStep }) {
           </div>
           <div className="bigbutton">
             <button onClick={reduceStep} className="back">
+              <IconLeft />
               <p>Back</p>
             </button>
             <button onClick={handleSubmitButton} className="continue">
               <p className="con">Continue 2/3</p>
+              <IconRight />
             </button>
           </div>
         </div>

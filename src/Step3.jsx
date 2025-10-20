@@ -1,6 +1,11 @@
 import { useState } from "react";
 import "./App.css";
 import Input from "./input";
+import ProfileImage from "./icons/ProfileImage";
+import PineconeLogo from "./icons/PineconeLogo";
+import DeleteIcon from "./icons/deleteIcon";
+import IconLeft from "./icons/IconLeft";
+import IconRight from "./icons/IconRight";
 export function Page3({ increaseStep, reduceStep }) {
   const [dateOfBirth, setDateOfBirth] = useState("");
   const [profileImage, setProfileImage] = useState("");
@@ -54,7 +59,7 @@ export function Page3({ increaseStep, reduceStep }) {
       <div className="section">
         <div className="box">
           <div className="navi">
-            <div className="photo"></div>
+            <PineconeLogo />
             <p className="Join">Join Us! 😎</p>
             <p className="please">
               Please provide all current information accurately.
@@ -68,6 +73,7 @@ export function Page3({ increaseStep, reduceStep }) {
                 type="date"
                 name="dateOfBirth"
                 value={dateOfBirth}
+                className={dateOfBirthError ? "input-error" : "first"}
                 onChange={handleStepThreeContinueButton}
               />
               {dateOfBirthError && (
@@ -77,16 +83,31 @@ export function Page3({ increaseStep, reduceStep }) {
                 {" "}
                 <h5>Profile image</h5> <span className="tseg">*</span>{" "}
               </div>
-              <input
-                className={!image && "img1"}
-                type="file"
-                name="profileImage"
-                accept="image/*"
-                onChange={handleStepThreeContinueButton}
-              />
+              {!image && (
+                <>
+                  <label htmlFor="fileUpload" className="customUploadButton">
+                    {" "}
+                    <ProfileImage />
+                    Add image
+                  </label>
+
+                  <input
+                    id="fileUpload"
+                    className="hiddenFileInput"
+                    type="file"
+                    name="profileImage"
+                    accept="image/*"
+                    onChange={handleStepThreeContinueButton}
+                  />
+                </>
+              )}
               {image && (
-                <div className="img">
+                <div className="img" style={{ position: "relative" }}>
                   <img src={image} />{" "}
+                  <DeleteIcon
+                    style={{ position: "absolute", right: 13, top: 10 }}
+                    onClick={() => setImage(null)}
+                  />
                 </div>
               )}
               {profileImageError && (
@@ -96,10 +117,12 @@ export function Page3({ increaseStep, reduceStep }) {
           </div>
           <div className="bigbutton">
             <button onClick={reduceStep} className="back">
+              <IconLeft />
               <p>Back</p>
             </button>
             <button onClick={handleSubmitButton} className="continue">
               <p className="con">Submit 3/3</p>
+              <IconRight />
             </button>
           </div>
         </div>
