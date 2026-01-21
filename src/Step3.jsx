@@ -3,7 +3,7 @@ import "./App.css";
 import Input from "./input";
 import ProfileImage from "./icons/ProfileImage";
 import PineconeLogo from "./icons/PineconeLogo";
-import DeleteIcon from "./icons/deleteIcon";
+import DeleteIcon from "./icons/DeleteIcon";
 import IconLeft from "./icons/IconLeft";
 import IconRight from "./icons/IconRight";
 export function Page3({ increaseStep, reduceStep }) {
